@@ -24,9 +24,10 @@ SECRET_KEY = "uu0#-y0e0cm7^opg@&%os7m+-h=%+zn7uc$n4@c3cx0lxnlrib"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = "*"
 
 # Application definition
 
@@ -39,7 +40,7 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
-THIRD_PARTY_APPS = ["django_countries","django_seed"]
+THIRD_PARTY_APPS = ["django_countries", "django_seed"]
 
 PROJECT_APPS = [
     "users.apps.UsersConfig",
@@ -68,7 +69,7 @@ ROOT_URLCONF = "config.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
