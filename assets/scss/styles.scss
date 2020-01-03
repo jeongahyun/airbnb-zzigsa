@@ -76,4 +76,8 @@ form {
     @apply w-full text-center rounded p-1 cursor-pointer;
 }
 
+.banner {
+    background-image: url(/static/img/banner.png);
+}
+
 @tailwind utilities;
