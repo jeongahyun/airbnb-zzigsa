@@ -2,21 +2,21 @@
     {% if user.is_authenticated %}
     <li class="nav_link">
         <a href="{% url 'users:switch-hosting' %}">
-            {% if request.session.is_hosting %}
-            Stop hosting
+            {% if user.superhost %}
+            (찍사 유저)
             {% else %}
-            Start hosting
+            (일반 유저)
             {% endif %}
         </a>
     </li>
-    {% if request.session.is_hosting %}
-    <li class="nav_link"><a href="{% url 'rooms:create' %}">Create Room</a></li>
+    {% if user.superhost %}
+    <li class="nav_link"><a href="{% url 'rooms:create' %}">사진올리기</a></li>
     {% endif %}
-    <li class="nav_link"><a href="{% url 'lists:see-favs' %}">Favs({{user.list.rooms.count}})</a></li>
-    <li class="nav_link"><a href="{{user.get_absolute_url}}">Profile</a></li>
-    <li class="nav_link"><a href="{% url "users:logout" %}">Log out</a></li>
+    <li class="nav_link"><a href="{% url 'lists:see-favs' %}">관심목록({{user.list.rooms.count}})</a></li>
+    <li class="nav_link"><a href="{{user.get_absolute_url}}">프로필</a></li>
+    <li class="nav_link"><a href="{% url "users:logout" %}">로그아웃</a></li>
     {% else %}
-    <li class="nav_link"><a href="{% url "users:login" %}">Log in</a></li>
-    <li class="nav_link"><a href="{% url "users:signup" %}">Sign up</a></li>
+    <li class="nav_link"><a href="{% url "users:login" %}">로그인</a></li>
+    <li class="nav_link"><a href="{% url "users:signup" %}">회원가입</a></li>
     {% endif %}
 </ul>

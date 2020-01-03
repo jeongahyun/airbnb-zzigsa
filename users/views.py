@@ -32,7 +32,6 @@ def log_out(request):
 
 
 class SignUpView(mixins.LoggedOutOnlyView, FormView):
-    
 
     template_name = "users/signup.html"
     form_class = forms.SignUpForm
@@ -50,6 +49,7 @@ class SignUpView(mixins.LoggedOutOnlyView, FormView):
 
 def kakao_login(request):
     client_id = os.environ.get("KAKAO_ID")
+    print(client_id)
     redirect_uri = "http://127.0.0.1:8000/users/login/kakao/callback"
     return redirect(
         f"https://kauth.kakao.com/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code"
@@ -58,6 +58,7 @@ def kakao_login(request):
 
 class KakaoException(Exception):
     pass
+
 
 def kakao_callback(request):
     try:
@@ -123,7 +124,6 @@ class UserProfileView(DetailView):
 
 
 class UpdateProfileView(SuccessMessageMixin, UpdateView):
-    
 
     model = models.User
     template_name = "users/update-profile.html"
@@ -141,6 +141,7 @@ class UpdateProfileView(SuccessMessageMixin, UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
         form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
@@ -150,18 +151,18 @@ class UpdateProfileView(SuccessMessageMixin, UpdateView):
         form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
         return form
 
-    
-
 
 class UpdatePasswordView(SuccessMessageMixin, PasswordChangeView):
-    
+
     template_name = "users/update-password.html"
     success_message = "Password Updated"
-    
+
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
-        form.fields["old_password"].widget.attrs = {"placeholder": "Current password"}
-        form.fields["new_password1"].widget.attrs = {"placeholder": "New password"}
+        form.fields["old_password"].widget.attrs = {
+            "placeholder": "Current password"}
+        form.fields["new_password1"].widget.attrs = {
+            "placeholder": "New password"}
         form.fields["new_password2"].widget.attrs = {
             "placeholder": "Confirm new password"
         }
