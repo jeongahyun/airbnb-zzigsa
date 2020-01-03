@@ -52,8 +52,7 @@ PROJECT_APPS = [
     "conversations.apps.ConversationsConfig",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
-
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -127,6 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
 AUTH_USER_MODEL = "users.User"
 
@@ -134,3 +134,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 
 
 MEDIA_URL = "/media/"
+
+
+# Auth
+
+LOGIN_URL = "/users/login/"
