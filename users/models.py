@@ -2,6 +2,7 @@ import uuid
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.shortcuts import reverse
+from core import managers as core_managers
 # Create your models here.
 
 
@@ -32,7 +33,8 @@ class User(AbstractUser):
     LANGUAGE_ENGLISH = "en"
     LANGUAGE_KOREAN = "kr"
 
-    LANGUAGE_CHOICES = ((LANGUAGE_ENGLISH, "English"), (LANGUAGE_KOREAN, "Korean"))
+    LANGUAGE_CHOICES = ((LANGUAGE_ENGLISH, "English"),
+                        (LANGUAGE_KOREAN, "Korean"))
 
     CURRENCY_USD = "usd"
     CURRENCY_KRW = "krw"
@@ -40,7 +42,8 @@ class User(AbstractUser):
     CURRENCY_CHOICES = ((CURRENCY_USD, "USD"), (CURRENCY_KRW, "KRW"))
 
     avatar = models.ImageField(upload_to="avatars", blank=True)
-    gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
+    gender = models.CharField(choices=GENDER_CHOICES,
+                              max_length=10, blank=True)
     bio = models.TextField(blank=True)
     birthdate = models.DateField(blank=True, null=True)
     language = models.CharField(
@@ -53,6 +56,7 @@ class User(AbstractUser):
     login_method = models.CharField(
         max_length=50, choices=LOGIN_CHOICES, default=LOGIN_EMAIL
     )
+    objects = core_managers.CustomUserManager()
 
     def get_absolute_url(self):
         return reverse("users:profile", kwargs={"pk": self.pk})
