@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+{{user.first_name}}'s Reservation
+{% endblock page_title %}
+
+{% block content %}
+
+<div class="min-h-75vh">
+
+    <h3 class="mb-12 text-2xl text-center">Your Reservation</h3>
+
+
+    <div class="container mx-auto pb-10 ">
+        <div class="flex flex-wrap -mx-40 mb-10">
+            {% for reservation in user.reservations.all  %}
+            {% include 'mixins/reservation_card.html' with room=reservation.room reservation=reservation %}
+            {% endfor %}
+        </div>
+    </div>
+
+
+</div>
+{% endblock content %}

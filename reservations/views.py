@@ -3,10 +3,10 @@ from django.http import Http404
 from django.views.generic import View
 from django.contrib import messages
 from django.shortcuts import render, redirect, reverse
+from django.views.generic import TemplateView
 from rooms import models as room_models
 from reviews import forms as review_forms
 from . import models
-
 
 
 class CreateError(Exception):
@@ -45,7 +45,8 @@ class ReservationDetailView(View):
         return render(
             self.request,
             "reservations/detail.html",
-            {"reservation": reservation, "form": form},        )
+            {"reservation": reservation, "form": form},)
+
 
 def edit_reservation(request, pk, verb):
     reservation = models.Reservation.objects.get_or_none(pk=pk)
@@ -61,3 +62,8 @@ def edit_reservation(request, pk, verb):
     reservation.save()
     messages.success(request, "Reservation Updated")
     return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
+
+
+class SeeListView(TemplateView):
+
+    template_name = "reservations/list_detail.html"
