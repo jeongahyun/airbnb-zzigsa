@@ -1,3 +1,4 @@
+import uuid
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.shortcuts import reverse
@@ -16,6 +17,16 @@ class User(AbstractUser):
         (GENDER_MALE, "Male"),
         (GENDER_FEMALE, "Female"),
         (GENDER_OTHER, "Other"),
+    )
+
+    LOGIN_EMAIL = "email"
+    LOGIN_GITHUB = "github"
+    LOGING_KAKAO = "kakao"
+
+    LOGIN_CHOICES = (
+        (LOGIN_EMAIL, "Email"),
+        (LOGIN_GITHUB, "Github"),
+        (LOGING_KAKAO, "Kakao"),
     )
 
     LANGUAGE_ENGLISH = "en"
@@ -39,6 +50,9 @@ class User(AbstractUser):
         choices=CURRENCY_CHOICES, max_length=3, blank=True, default=CURRENCY_KRW
     )
     superhost = models.BooleanField(default=False)
+    login_method = models.CharField(
+        max_length=50, choices=LOGIN_CHOICES, default=LOGIN_EMAIL
+    )
 
     def get_absolute_url(self):
         return reverse("users:profile", kwargs={"pk": self.pk})
