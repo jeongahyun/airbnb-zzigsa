@@ -200,18 +200,18 @@ class CreateRoomView(FormView):
         room.save()
         form.save_m2m()
         messages.success(self.request, "Room Uploaded")
-        return redirect(reverse("rooms:detail", kwargs={"pk": room.pk}))
+        return redirect(reverse("rooms:photos", kwargs={"pk": room.pk}))
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
         form.fields['intro'].widget.attrs = {
-            "placeholder": "고객에게 어필하기 위해 작가님을 소개해주세요."}
-        form.fields['name'].widget.attrs = {"placeholder": "상품 제목"}
+            "placeholder": "작가님 본인 소개"}
+        form.fields['name'].widget.attrs = {"placeholder": "작가 페이지 이름"}
         form.fields['description'].widget.attrs = {
-            "placeholder": "상품에 대한 상세 설명"}
+            "placeholder": "스냅 상품 설명"}
         form.fields['city'].widget.attrs = {
             "placeholder": "활동하시는 도시 (ex: 전주 ...)"}
         form.fields['equip'].widget.attrs = {
-            "placeholder": "작가님이 사용하시는 카메라 모델명을 적어주세요."}
-        form.fields['sns'].widget.attrs = {"placeholder": "인스타그램 url 등..."}
+            "placeholder": "사용하시는 카메라 모델명을 적어주세요."}
+        form.fields['sns'].widget.attrs = {"placeholder": "인스타그램 주소"}
         return form

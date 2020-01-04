@@ -10,9 +10,14 @@
 {% block content %}
 
 <div class="container mx-auto my-10 flex flex-col">
-
-    <div class="my-10 w-full">
-        <a href="{% url 'rooms:add-photo' room.pk %}" class="btn-link w-1/6 block">Upload Photo</a>
+    <div>
+        <div class="my-10 w-full mb-10 text-center text-red-600 font-medium text-l">
+            스냅사진 5장 이상 업로드
+        </div>
+        <div class="my-10 w-full">
+            <a href="{% url 'rooms:add-photo' room.pk %}"
+                class="mb-6 float-right btn-link w-1/6 block bg-gray-500">첨부</a>
+        </div>
     </div>
     {% for photo in room.photos.all  %}
     <div class="mb-5 border p-6 border-gray-400 flex justify-between">
@@ -21,14 +26,25 @@
             <span class="ml-5 text-xl">{{photo.caption}}</span>
         </div>
         <div class="flex flex-col w-1/5">
-            <a class="btn-link mb-5 bg-teal-500" href="{% url 'rooms:edit-photo' room.pk photo.pk %}">Edit</a>
-            <a class="btn-link bg-red-600" href="{% url 'rooms:delete-photo' room.pk photo.pk %}">Delete</a>
+            <a class="btn-link mb-5 bg-teal-500" href="{% url 'rooms:edit-photo' room.pk photo.pk %}">수정</a>
+            <a class="btn-link bg-red-600" href="{% url 'rooms:delete-photo' room.pk photo.pk %}">삭제</a>
         </div>
     </div>
     {% endfor %}
 
-    <div class="flex justify-center mt-5">
-        <a href="{% url 'rooms:edit' room.pk %}" class="text-teal-500 font-medium text-xl">Back to edit room</a>
+    {% if room.host.zzigsa %}
+    <div class="flex-1 mt-5">
+        <a href="{% url 'rooms:edit' room.pk %}" class="w-1/5 btn-link bg-gray-400 text-black float-left">
+            < 정보수정</a> <a class="w-1/5 btn-link bg-gray-400 text-black float-right"
+                href="{% url 'rooms:detail' room.pk  %}">완료 >
+        </a>
     </div>
+    {% else %}
+    <div class="flex-1 mt-5">
+        <a class="w-1/5 btn-link bg-gray-400 text-black float-right" href="{% url 'rooms:detail' room.pk  %}">제출
+        </a>
+    </div>
+    {% endif %}
+
 </div>
 {% endblock content %}

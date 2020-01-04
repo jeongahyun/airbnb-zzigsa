@@ -1,9 +1,9 @@
 <ul class="flex items-center text-sm font-medium h-full">
     {% if user.is_authenticated %}
-
-
-    {% if not user.zzigsa %}
-    <li class="nav_link"><a href="{% url 'rooms:create' %}">Apply Zzigsa!</a></li>
+    {% if user.rooms.first.pk %}
+    <li class="nav_link"><a href="{% url 'rooms:detail' user.rooms.first.pk %}">작가페이지</a></li>
+    {% else %}
+    <li class="nav_link"><a href="{% url 'rooms:create' %}">찍사 등록하기</a></li>
     {% endif %}
 
     <li class="nav_link"><a href="{% url 'conversations:see-Chat' %}">대화목록</a></li>
