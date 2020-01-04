@@ -8,13 +8,15 @@
 
 <div class="min-h-75vh">
 
-    <h3 class="mb-12 text-2xl text-center">Your Message</h3>
+    <h3 class="mb-12 text-2xl text-center">채팅 내역</h3>
 
 
     <div class="container mx-auto pb-10 ">
         <div class="flex flex-wrap -mx-40 mb-10">
             {% for chat in user.conversation.all%}
+            {% if chat.messages.count != 0 %}
             {% include 'mixins/chat_card.html' with chat=chat %}
+            {% endif %}
             {% endfor %}
         </div>
     </div>

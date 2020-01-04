@@ -6,14 +6,14 @@
     {% else %}
 
     {% if not user.photos.all %}
-    <li class="nav_link"><a href="{% url 'rooms:create' %}">찍사 등록하기</a></li>
+    <li class="nav_link"><a href="{% url 'rooms:create' %}">찍사 등록</a></li>
     {% else %}
     {% endif %}
 
     {% endif %}
 
-    <li class="nav_link"><a href="{% url 'conversations:see-Chat' %}">대화목록</a></li>
-    <li class="nav_link"><a href="{% url 'lists:see-favs' %}">관심목록({{user.list.rooms.count}})</a></li>
+    <li class="nav_link"><a href="{% url 'conversations:see-Chat' %}">채팅목록</a></li>
+    <li class="nav_link"><a href="{% url 'lists:see-favs' %}">관심목록</a></li>
     <li class="nav_link"><a href="{% url 'reservations:see-List' %}">예약현황</a></li>
     <li class="nav_link"><a href="{{user.get_absolute_url}}">프로필</a></li>
     <li class="nav_link"><a href="{% url "users:logout" %}">로그아웃</a></li>

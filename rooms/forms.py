@@ -31,6 +31,9 @@ class CreatePhotoForm(forms.ModelForm):
     class Meta:
         model = models.Photo
         fields = ("caption", "file")
+        labels = {
+            'caption': ('사진제목'),
+        }
 
     def save(self, pk, *args, **kwargs):
         photo = super().save(commit=False)

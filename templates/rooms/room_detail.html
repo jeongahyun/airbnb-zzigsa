@@ -26,32 +26,14 @@
                 <span class="mt-2 text-gray-500">{{room.host.first_name}}</span>
             </a>
         </div>
-        {% on_favs room as on_favs_boolean %}
-        {% if on_favs_boolean %}
-        <a class="block mb-10 w-2/6 text-teal-600 font-bold"
-            href="{% url 'lists:toggle-room' room.pk %}?action=remove">Remove from Favourites</a>
-        {% else %}
-        <a class="block mb-10 w-2/6 text-teal-600 font-bold"
-            href="{% url 'lists:toggle-room' room.pk %}?action=add">Save to Favourites</a>
-        {% endif %}
+
 
         <div class="flex border-section">
         </div>
         <p class="border-section">
             {{room.description}}
         </p>
-        <div class="border-section">
-            <h4 class="font-medium text-lg mb-5">Amenities</h4>
 
-        </div>
-        <div class="border-section">
-            <h4 class="font-medium text-lg mb-5">Facilities</h4>
-
-        </div>
-        <div class="border-section">
-            <h4 class="font-medium text-lg mb-5">House Rules</h4>
-
-        </div>
         <div class="mt-10">
             <h4 class="font-medium text-2xl mb-5">Reviews</h4>
             <div class="flex items-center">
@@ -106,9 +88,6 @@
                 <a href="{% url 'reservations:create' room.pk day.year day.month day.number %}"
                     class="cal-number bg-gray-200 text-gray-700 hover:bg-teal-400 hover:text-white hover:font-medium">{{day}}</a>
 
-
-
-
                 {% endif %}
                 {% else %}
                 <span></span>
@@ -118,6 +97,15 @@
             </div>
         </div>
         {% endfor %}
+        {% on_favs room as on_favs_boolean %}
+        {% if on_favs_boolean %}
+
+        <a class="block mb-10 w-2/6 text-teal-600 font-bold float-right"
+            href="{% url 'lists:toggle-room' room.pk %}?action=remove">장바구니 삭제</a>
+        {% else %}
+        <a class="block mb-10 w-2/6 text-teal-600 font-bold float-right"
+            href="{% url 'lists:toggle-room' room.pk %}?action=add">장바구니 추가</a>
+        {% endif %}
 
     </div>
 </div>

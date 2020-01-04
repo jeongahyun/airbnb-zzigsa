@@ -128,6 +128,7 @@ class UpdateProfileView(SuccessMessageMixin, UpdateView):
     model = models.User
     template_name = "users/update-profile.html"
     fields = (
+        "avatar",
         "first_name",
         "last_name",
     )
@@ -141,7 +142,6 @@ class UpdateProfileView(SuccessMessageMixin, UpdateView):
         form = super().get_form(form_class=form_class)
         form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
         form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
-
         return form
 
 

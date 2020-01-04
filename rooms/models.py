@@ -73,7 +73,6 @@ class Photo(core_models.TimeStampedModel):
 class Room(core_models.TimeStampedModel):
 
     """Room Model Definition"""
-
     name = models.CharField(max_length=140)
     intro = models.CharField(max_length=200, default="")
     description = models.TextField()
