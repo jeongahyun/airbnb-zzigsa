@@ -15,7 +15,6 @@ class CustomUserAdmin(UserAdmin):
             {
                 "fields": (
                     "avatar",
-                    "bio",
                     "zzigsa",
                 )
             },

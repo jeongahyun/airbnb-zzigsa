@@ -130,11 +130,6 @@ class UpdateProfileView(SuccessMessageMixin, UpdateView):
     fields = (
         "first_name",
         "last_name",
-        "gender",
-        "bio",
-        "birthdate",
-        "language",
-        "currency",
     )
 
     success_message = "Profile Updated"
@@ -146,9 +141,7 @@ class UpdateProfileView(SuccessMessageMixin, UpdateView):
         form = super().get_form(form_class=form_class)
         form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
         form.fields["last_name"].widget.attrs = {"placeholder": "Last name"}
-        form.fields["bio"].widget.attrs = {"placeholder": "Bio"}
-        form.fields["birthdate"].widget.attrs = {"placeholder": "Birthdate"}
-        form.fields["first_name"].widget.attrs = {"placeholder": "First name"}
+
         return form
 
 
