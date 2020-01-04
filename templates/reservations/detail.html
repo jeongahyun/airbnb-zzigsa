@@ -39,7 +39,7 @@ Reservation {{reservation.check_in}}
 
         <div class="py-1 px-10 flex">
             {% if reservation.status != 'canceled' %}
-            {% if reservation.status == 'confirmed' and reservation.is_finished %}
+            {% if reservation.status == 'confirmed' and reservation.is_finished and user.reviews.room != room%}
             <span class="font-medium text-2xl text-center w-full block mb-5">리뷰 작성</span>
             <form action="{% url 'reviews:create' reservation.room.pk %}" method="POST" class="w-1/2 mx-auto">
                 {% csrf_token %}
