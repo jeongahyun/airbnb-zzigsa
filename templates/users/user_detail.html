@@ -13,7 +13,7 @@
 
         <div class="flex items-center">
             <span class="text-3xl mt-1">{{user_obj.first_name}}</span>
-            {% if user_obj.superhost %}
+            {% if user_obj.zzigsa %}
             <i class="fas fa-check-circle text-teal-400 ml-1"></i>
             {% endif %}
         </div>
@@ -33,6 +33,12 @@
             {% include 'mixins/room_card.html' with room=room %}
             {% endfor %}
         </div>
+
+        {% if user_obj.rooms.first_photo == None %}
+        사진을 필수로 올려야 찍사 승인을 받을 수 있습니다.
+        <a href="{% url 'rooms:add-photo' user.pk %}">사진 업로드</a>
+        {% endif %}
+
     </div>
     {% endif %}
 </div>

@@ -20,12 +20,11 @@ class SearchForm(forms.Form):
     amenities = forms.ModelMultipleChoiceField(
         required=False,
         queryset=models.Amenity.objects.all(),
-        widget=forms.CheckboxSelectMultiple,    )
+        widget=forms.CheckboxSelectMultiple,)
     facilities = forms.ModelMultipleChoiceField(
         required=False,
         queryset=models.Facility.objects.all(),
-        widget=forms.CheckboxSelectMultiple,    )
-
+        widget=forms.CheckboxSelectMultiple,)
 
 
 class CreatePhotoForm(forms.ModelForm):
@@ -44,23 +43,12 @@ class CreateRoomForm(forms.ModelForm):
     class Meta:
         model = models.Room
         fields = (
+            "intro",
             "name",
             "description",
-            "country",
             "city",
-            "price",
-            "address",
-            "guests",
-            "beds",
-            "bedrooms",
-            "baths",
-            "check_in",
-            "check_out",
-            "instant_book",
-            "room_type",
-            "amenities",
-            "facilities",
-            "house_rules",
+            "equip",
+            "sns",
         )
 
     def save(self, *args, **kwargs):

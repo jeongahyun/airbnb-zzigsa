@@ -15,18 +15,14 @@ class CustomUserAdmin(UserAdmin):
             {
                 "fields": (
                     "avatar",
-                    "gender",
                     "bio",
-                    "birthdate",
-                    "language",
-                    "currency",
-                    "superhost",
+                    "zzigsa",
                 )
             },
         ),
     )
 
-    list_filter = UserAdmin.list_filter + ("superhost",)
+    list_filter = UserAdmin.list_filter + ("zzigsa",)
 
     list_display = (
         "username",
@@ -34,9 +30,7 @@ class CustomUserAdmin(UserAdmin):
         "last_name",
         "email",
         "is_active",
-        "language",
-        "currency",
-        "superhost",
+        "zzigsa",
         "is_staff",
         "is_superuser",
     )

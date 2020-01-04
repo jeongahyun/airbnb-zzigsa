@@ -1,16 +1,9 @@
 <ul class="flex items-center text-sm font-medium h-full">
     {% if user.is_authenticated %}
-    <li class="nav_link">
-        <a href="{% url 'users:switch-hosting' %}">
-            {% if user.superhost %}
-            (찍사 유저)
-            {% else %}
-            (일반 유저)
-            {% endif %}
-        </a>
-    </li>
-    {% if user.superhost %}
-    <li class="nav_link"><a href="{% url 'rooms:create' %}">사진올리기</a></li>
+
+
+    {% if not user.zzigsa %}
+    <li class="nav_link"><a href="{% url 'rooms:create' %}">Apply Zzigsa!</a></li>
     {% endif %}
 
     <li class="nav_link"><a href="{% url 'conversations:see-Chat' %}">대화목록</a></li>

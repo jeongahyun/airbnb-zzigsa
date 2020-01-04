@@ -40,6 +40,7 @@ class SearchView(View):
     # form = forms.SearchForm()
     """ SearchView Definition """
     # return render(request, "rooms/search.html", {"form": form})
+
     def get(self, request):
         country = request.GET.get("country")
 
@@ -99,7 +100,8 @@ class SearchView(View):
                 for facility in facilities:
                     filter_args["facilities"] = facility
 
-                qs = models.Room.objects.filter(**filter_args).order_by("-created")
+                qs = models.Room.objects.filter(
+                    **filter_args).order_by("-created")
                 paginator = Paginator(qs, 10, orphans=5)
 
                 page = request.GET.get("page", 1)
@@ -107,7 +109,8 @@ class SearchView(View):
                 rooms = paginator.get_page(page)
 
                 return render(
-                    request, "rooms/search.html", {"form": form, "rooms": rooms}
+                    request, "rooms/search.html", {
+                        "form": form, "rooms": rooms}
                 )
 
         else:
@@ -120,23 +123,12 @@ class EditRoomView(UpdateView):
     model = models.Room
     template_name = "rooms/room_edit.html"
     fields = (
+        "intro",
         "name",
         "description",
-        "country",
         "city",
-        "price",
-        "address",
-        "guests",
-        "beds",
-        "bedrooms",
-        "baths",
-        "check_in",
-        "check_out",
-        "instant_book",
-        "room_type",
-        "amenities",
-        "facilities",
-        "house_rules",
+        "equip",
+        "sns",
     )
 
     def get_object(self, queryset=None):
@@ -209,3 +201,17 @@ class CreateRoomView(FormView):
         form.save_m2m()
         messages.success(self.request, "Room Uploaded")
         return redirect(reverse("rooms:detail", kwargs={"pk": room.pk}))
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields['intro'].widget.attrs = {
+            "placeholder": "고객에게 어필하기 위해 작가님을 소개해주세요."}
+        form.fields['name'].widget.attrs = {"placeholder": "상품 제목"}
+        form.fields['description'].widget.attrs = {
+            "placeholder": "상품에 대한 상세 설명"}
+        form.fields['city'].widget.attrs = {
+            "placeholder": "활동하시는 도시 (ex: 전주 ...)"}
+        form.fields['equip'].widget.attrs = {
+            "placeholder": "작가님이 사용하시는 카메라 모델명을 적어주세요."}
+        form.fields['sns'].widget.attrs = {"placeholder": "인스타그램 url 등..."}
+        return form

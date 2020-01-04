@@ -13,9 +13,10 @@ Home
     </div>
 
     <div class="flex flex-wrap -mx-80 mb-10">
-        {% for room in rooms  %}
+        {% for room in rooms %}
+        {% if room.host.zzigsa %}
         {% include 'mixins/room_card.html' with room=room %}
-        {% endfor %}
+        {% endif %} {% endfor %}
     </div>
     <div class="flex items-center justify-center mx-auto container">
         {% if page_obj.has_previous %}
