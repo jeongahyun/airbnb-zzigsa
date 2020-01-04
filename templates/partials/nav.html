@@ -12,6 +12,8 @@
     {% if user.superhost %}
     <li class="nav_link"><a href="{% url 'rooms:create' %}">사진올리기</a></li>
     {% endif %}
+
+    <li class="nav_link"><a href="{% url 'conversations:see-Chat' %}">대화목록</a></li>
     <li class="nav_link"><a href="{% url 'lists:see-favs' %}">관심목록({{user.list.rooms.count}})</a></li>
     <li class="nav_link"><a href="{% url 'reservations:see-List' %}">예약현황</a></li>
     <li class="nav_link"><a href="{{user.get_absolute_url}}">프로필</a></li>

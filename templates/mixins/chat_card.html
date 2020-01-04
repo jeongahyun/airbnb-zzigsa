@@ -1,0 +1,13 @@
+<div class="w-1/2 mb-10 px-20 overflow-hidden border">
+    <a href="{% url 'conversations:detail' chat.pk %}">
+
+        <div class="flex justify-between mb-4 truncate">
+            <div class="w-5/5 overflow-hidden flex">
+                <span class="text-sm text-gray-600 block truncate">{{chat}}</span>
+            </div>
+        </div>
+        <span class="text-black w-12/12 block truncate">{{chat.messages.all.last}}</span>
+        <span class="text-black w-12/12 block truncate text-right">{{chat.messages.all.last.created}}</span>
+
+    </a>
+</div>

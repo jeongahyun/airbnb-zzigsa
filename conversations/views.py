@@ -1,9 +1,20 @@
 from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import redirect, reverse, render
+from django.views.generic import TemplateView
 from django.views.generic import View
 from users import models as user_models
 from . import models, forms
+
+
+# def show_conversation(request, pk):
+#     user = user_models.User.objects.get_or_none(pk=pk)
+#     if user is not None:
+#         try:
+#             conversation = models.Conversation.objects.get(participants=user)
+#         except models.Conversation.DoesNotExist:
+#             raise Http404()
+#         return redirect(reverse("conversations:detail", kwargs={"pk": conversation}))
 
 
 def go_conversation(request, a_pk, b_pk):
@@ -43,3 +54,8 @@ class ConversationDetailView(View):
                 message=message, user=self.request.user, conversation=conversation
             )
         return redirect(reverse("conversations:detail", kwargs={"pk": pk}))
+
+
+class SeeListView(TemplateView):
+
+    template_name = "conversations/list_detail.html"
