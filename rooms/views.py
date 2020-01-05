@@ -141,6 +141,11 @@ class EditRoomView(UpdateView):
         form.fields['name'].label = "Title"
         return form
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields['name'].label = "Title"
+        return form
+
 
 class RoomPhotosView(DetailView):
 
