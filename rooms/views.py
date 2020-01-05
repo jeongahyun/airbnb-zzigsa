@@ -136,6 +136,10 @@ class EditRoomView(UpdateView):
         if room.host.pk != self.request.user.pk:
             raise Http404()
         return room
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields['name'].label = "Title"
+        return form
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
