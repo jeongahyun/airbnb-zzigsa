@@ -137,6 +137,11 @@ class EditRoomView(UpdateView):
             raise Http404()
         return room
 
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class=form_class)
+        form.fields['name'].label = "Title"
+        return form
+
 
 class RoomPhotosView(DetailView):
 
