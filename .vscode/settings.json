@@ -1,8 +1,15 @@
 {
-    "python.pythonPath": "myvenv\\Scripts\\python.exe",
-    "python.linting.flake8Enabled": true,
-    "python.linting.pylintEnabled": false,
-    "python.linting.enabled": true,
-    "python.formatting.provider": "black",
-    "python.linting.flake8Args": ["--max-line-length=88"]
+  "editor.formatOnSave": true,
+  "eslint.autoFixOnSave": true,
+  "python.pythonPath": "myvenv\\Scripts\\python.exe",
+  "python.linting.flake8Enabled": true,
+  "python.linting.pylintEnabled": false,
+  "python.linting.enabled": true,
+  "python.formatting.provider": "black",
+  "python.linting.flake8Args": [
+    "--max-line-length=88"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
 }

@@ -7,27 +7,26 @@
 {% block content %}
 
 <div class="min-h-75vh">
-    <div class="container mx-auto">
-        <div class="text-center px-3 lg:px-0">
-          <h1
-            class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight"
-          >
-            현재 예약중인 목록입니다.
-          </h1>
-        </div>
-        <div class="flex items-center w-full mx-auto content-end">
-          <div
-            class="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white w-1/2 rounded shadow-xl"
-          ></div>
-        </div>
-      </div>
-    <div class="container mx-auto pb-10 ">
-        <div class="flex flex-wrap -mx-40 mb-10">
-            {% for reservation in user.reservations.all  %}
-            {% include 'mixins/reservation_card.html' with room=reservation.room reservation=reservation %}
-            {% endfor %}
-        </div>
+  <div class="container mx-auto">
+    <div class="text-center px-3 lg:px-0">
+      <h1 class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
+        현재 예약중인 목록입니다.
+      </h1>
+      <p class="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8">
+        예약 중입니다. 작가가 승인할 때까지 잠시만 기다려주세요
+      </p>
     </div>
+    <div class="flex items-center w-full mx-auto content-end">
+      <div class="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white w-1/2 rounded shadow-xl"></div>
+    </div>
+  </div>
+  <div class="container mx-auto pb-10 ">
+    <div class="flex flex-wrap -mx-40 mb-10">
+      {% for reservation in user.reservations.all  %}
+      {% include 'mixins/reservation_card.html' with room=reservation.room reservation=reservation %}
+      {% endfor %}
+    </div>
+  </div>
 
 
 </div>

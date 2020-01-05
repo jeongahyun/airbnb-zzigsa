@@ -24,18 +24,40 @@ Reservation {{reservation.check_in}}
             <a href="{% url 'rooms:detail' reservation.room.pk %}">{{reservation.room.name}}</a>
         </span>
 
-        <div class="flex p-5 border-b w-full">
-            <div class="flex flex-col items-center">
-                {% include "mixins/user_avatar.html" with user=reservation.room.host %}
-                <span class="mt-2 text-gray-500">{{reservation.room.host.first_name}}</span>
-            </div>
-            <div class="ml-5 flex flex-col">
-                <span class="font-medium mb-px">Contact</span>
+        
+            {% if reservation.room.host != user %}   
+            <div class="flex p-5 border-b w-full">
+                <div class="flex flex-col items-center">
+                    {% include "mixins/user_avatar.html" with user=reservation.room.host %}
+                    <span class="mt-2 text-gray-500">{{reservation.room.host.first_name}}</span>
+                </div>
+                <div class="ml-5 flex flex-col">
+                    <span class="font-medium mb-px">Contact</span>
 
-                <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}"
-                    class="font-medium text-teal-500">메세지보내기</a>
+                    <a href="{% url 'conversations:see-Chat' %}"
+                        class="font-medium text-teal-500">메세지 확인</a>
+                    <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk %}"
+                        class="font-medium text-teal-500">메세지보내기</a>
+                        
+                </div>
             </div>
-        </div>
+            {% else %}
+            <div class="flex p-5 border-b w-full">
+                <div class="flex flex-col items-center">
+                    {% include "mixins/user_avatar.html" with user=reservation.guest %}
+                    <span class="mt-2 text-gray-500">{{reservation.guset.first_name}}</span>
+                </div>
+                <div class="ml-5 flex flex-col">
+                    <span class="font-medium mb-px">Contact</span>
+
+                    <a href="{% url 'conversations:see-Chat' %}"
+                        class="font-medium text-teal-500">메세지 확인</a>
+                    <a href="{% url 'conversations:go' reservation.guest.pk reservation.room.host.pk %}"
+                        class="font-medium text-teal-500">메세지보내기</a>
+                </div>
+            </div>
+            {% endif %}
+                
 
         <div class="py-1 px-10 flex">
             {% if reservation.status != 'canceled' %}
