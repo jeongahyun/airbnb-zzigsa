@@ -53,6 +53,9 @@ class CreateRoomForm(forms.ModelForm):
             "equip",
             "sns",
         )
+        labels = {
+            'name': ('Title'),
+        }
 
     def save(self, *args, **kwargs):
         room = super().save(commit=False)
