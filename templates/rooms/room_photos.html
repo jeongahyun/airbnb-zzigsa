@@ -11,12 +11,14 @@
 
 <div class="container mx-auto my-10 flex flex-col">
     <div>
+
         <div class="my-10 w-full mb-10 text-center text-red-600 font-medium text-l">
             스냅사진 5장 이상 업로드
         </div>
         <div class="my-10 w-full">
             <a href="{% url 'rooms:add-photo' room.pk %}"
-                class="mb-6 float-right btn-link w-1/6 block bg-gray-500">첨부</a>
+                class="w-1/5 btn-link bg-gray-500 text-black float-right">첨부</a>
+                <p class="text-3xl flax bold text-red-600 ">등록 심사결과는 메일과 메시지로 알려드립니다.</p>
         </div>
     </div>
     {% for photo in room.photos.all  %}
@@ -31,7 +33,6 @@
         </div>
     </div>
     {% endfor %}
-
     {% if room.host.zzigsa %}
     <div class="flex-1 mt-5">
         <a href="{% url 'rooms:edit' room.pk %}" class="w-1/5 btn-link bg-gray-400 text-black float-left">
@@ -41,7 +42,6 @@
     </div>
     {% else %}
     <div class="flex-1 mt-5">
-        <span class="text-3xl flax bold text-red-600 ">등록 심사결과는 메일과 메시지로 알려드립니다.</span>
         <a class="w-1/5 btn-link bg-gray-400 text-black float-right" href="{% url 'core:home'  %}">제출
         </a>
     </div>
