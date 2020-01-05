@@ -6,7 +6,7 @@
 
 사진 작가를 위한 웹 사이트입니다.
 
-![zzigsa](./readmeimage/zzigsa.png)
+![zzigsa](./static/img/banner.png)
 
 ---
 
